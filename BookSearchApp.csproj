@@ -9,6 +9,8 @@
     <SingleProject>true</SingleProject>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidKeyStore>false</AndroidKeyStore>
+    <CheckEolWorkloads>false</CheckEolWorkloads>
+    <NoWarn>$(NoWarn);NETSDK1202</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

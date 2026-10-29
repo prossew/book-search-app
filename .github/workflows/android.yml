@@ -21,16 +21,18 @@ jobs:
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: '8.0.x'
 
       - name: Install MAUI Android workload
         run: dotnet workload install maui-android
 
       - name: Build and Publish APK
-        run: dotnet publish BookSearchApp.csproj -c Release -f net8.0-android /p:AndroidPackageFormat=apk /p:AndroidKeyStore=false
+        run: dotnet publish BookSearchApp.csproj -c Release -f net8.0-android /p:AndroidPackageFormat=apk /p:AndroidKeyStore=false /p:CheckEolWorkloads=false
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: BookSearchApp-APK
-          path: '**/bin/Release/net8.0-android/*.apk'
+          path: |
+            **/bin/Release/net8.0-android/*.apk
+            **/bin/Release/net8.0-android/publish/*.apk
