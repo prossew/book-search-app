@@ -10,13 +10,18 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidKeyStore>false</AndroidKeyStore>
     <CheckEolWorkloads>false</CheckEolWorkloads>
-    <NoWarn>$(NoWarn);NETSDK1202</NoWarn>
+    <NoWarn>$(NoWarn);NETSDK1202;MA002</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.100" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-    <MauiIcon Include="Resources/AppIcon/appicon.svg" Color="#2196F3" />
-    <MauiSplashScreen Include="Resources/Splash/appicon.svg" BaseSize="128,128" Color="#2196F3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiIcon Include="Resources/AppIcon/appicon.svg" Color="#2196F3" Condition="Exists('Resources/AppIcon/appicon.svg')" />
+    <MauiSplashScreen Include="Resources/Splash/appicon.svg" BaseSize="128,128" Color="#2196F3" Condition="Exists('Resources/Splash/appicon.svg')" />
     <AndroidAsset Include="Resources/Raw/**" Condition="Exists('Resources/Raw')" />
     <AndroidResource Include="Resources/Values/**" Condition="Exists('Resources/Values')" />
   </ItemGroup>
