@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Graphics;
@@ -15,8 +14,19 @@ namespace BookSearchApp.Views
         {
             InitializeComponent();
 
-            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "books.db3");
-            _database = new MyDatabase(dbPath);
+            try
+            {
+                // Используем общий экземпляр БД из App, путь уже правильный (AppDataDirectory).
+                var app = (App)Application.Current;
+                _database = app.Database ?? throw new InvalidOperationException("База данных не инициализирована в App.");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[AddItem] DATABASE ERROR: {ex}");
+                StatusLabel.Text = $"Ошибка базы данных: {ex.Message}";
+                StatusLabel.TextColor = Colors.Red;
+                throw;
+            }
         }
 
         private async void OnAddBookClicked(object sender, EventArgs e)

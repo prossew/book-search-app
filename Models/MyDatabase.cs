@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SQLite;
+using SQLitePCL;
 
 namespace BookSearchApp.Models
 {
@@ -8,8 +9,18 @@ namespace BookSearchApp.Models
     {
         private readonly SQLiteConnection _database;
 
+        // Двойная защита: гарантируем, что нативная SQLite инициализирована,
+        // даже если MyDatabase создан до вызова Batteries_V2.Init() в MauiProgram.
+        static MyDatabase()
+        {
+            Batteries_V2.Init();
+        }
+
         public MyDatabase(string dbPath)
         {
+            if (string.IsNullOrWhiteSpace(dbPath))
+                throw new ArgumentException("Путь к базе данных не может быть пустым.", nameof(dbPath));
+
             _database = new SQLiteConnection(dbPath);
             _database.CreateTable<MyData>();
         }
