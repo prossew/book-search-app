@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls;
+using BookSearchApp.Views;
 
 namespace BookSearchApp
 {
@@ -7,7 +8,7 @@ namespace BookSearchApp
         public MainPage()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(AddItem), typeof(Views.AddItem));
+            Routing.RegisterRoute(nameof(AddItem), typeof(AddItem));
         }
     }
 }
