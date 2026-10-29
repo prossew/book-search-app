@@ -9,15 +9,17 @@
        Shell.UnselectedColor="#B3E5FC">
 
     <TabBar>
-        <Tab Title="О программе" Icon="{x:Null}">
-            <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" />
-        </Tab>
-        <Tab Title="Добавить книгу" Icon="{x:Null}">
-            <ShellContent ContentTemplate="{DataTemplate views:AddItem}" />
-        </Tab>
-        <Tab Title="Каталог книг" Icon="{x:Null}">
-            <ShellContent ContentTemplate="{DataTemplate views:ItemPage}" />
-        </Tab>
+        <ShellContent Title="О программе"
+                      ContentTemplate="{DataTemplate views:AboutPage}"
+                      Route="AboutPage" />
+
+        <ShellContent Title="Добавить книгу"
+                      ContentTemplate="{DataTemplate views:AddItem}"
+                      Route="AddItem" />
+
+        <ShellContent Title="Каталог книг"
+                      ContentTemplate="{DataTemplate views:ItemPage}"
+                      Route="ItemPage" />
     </TabBar>
 
 </Shell>
