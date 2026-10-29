@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Microsoft.Maui;
+using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Storage;
@@ -14,6 +15,14 @@ public partial class App : Application
 
     public App()
     {
+        AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            ShowError(e.ExceptionObject as Exception);
+        TaskScheduler.UnobservedTaskException += (s, e) =>
+        {
+            ShowError(e.Exception);
+            e.SetObserved();
+        };
+
         try
         {
             InitializeComponent();
@@ -25,42 +34,31 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[App] FATAL INIT ERROR: {ex}");
+            ShowError(ex);
+        }
+    }
 
+    public void ShowError(Exception ex)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
             MainPage = new ContentPage
             {
-                Content = new StackLayout
+                BackgroundColor = Colors.White,
+                Content = new ScrollView
                 {
-                    VerticalOptions = LayoutOptions.Center,
-                    HorizontalOptions = LayoutOptions.Center,
-                    Spacing = 12,
-                    Children =
+                    Content = new VerticalStackLayout
                     {
-                        new Label
+                        Padding = 20,
+                        Spacing = 12,
+                        Children =
                         {
-                            Text = "Ошибка запуска приложения",
-                            FontSize = 20,
-                            TextColor = Colors.Red,
-                            HorizontalTextAlignment = TextAlignment.Center
-                        },
-                        new Label
-                        {
-                            Text = ex.Message,
-                            FontSize = 14,
-                            TextColor = Colors.Gray,
-                            HorizontalTextAlignment = TextAlignment.Center
-                        },
-                        new Label
-                        {
-                            Text = ex.StackTrace,
-                            FontSize = 10,
-                            TextColor = Colors.Gray,
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            LineBreakMode = LineBreakMode.WordWrap
+                            new Label { Text = "Ошибка", FontSize = 20, TextColor = Colors.Red },
+                            new Label { Text = ex?.ToString() ?? "unknown", FontSize = 11, TextColor = Colors.Black }
                         }
                     }
                 }
             };
-        }
+        });
     }
 }

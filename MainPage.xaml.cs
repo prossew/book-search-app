@@ -1,22 +1,32 @@
 using System;
 using Microsoft.Maui.Controls;
-using BookSearchApp.Views;
+using Microsoft.Maui.Graphics;
 
 namespace BookSearchApp
 {
-    public partial class MainPage : Shell
+    public partial class App : Application
     {
-        public MainPage()
+        public App()
         {
             try
             {
                 InitializeComponent();
-                Routing.RegisterRoute(nameof(AddItem), typeof(AddItem));
+                MainPage = new MainPage();
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[MainPage] INIT ERROR: {ex}");
-                throw;
+                MainPage = new ContentPage
+                {
+                    Content = new ScrollView
+                    {
+                        Content = new Label
+                        {
+                            Text = ex.ToString(),
+                            TextColor = Colors.Red,
+                            Margin = 20
+                        }
+                    }
+                };
             }
         }
     }
