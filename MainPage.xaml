@@ -1,13 +1,25 @@
-using System;
-using Microsoft.Maui.Controls;
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:BookSearchApp.Views"
+       x:Class="BookSearchApp.MainPage"
+       Shell.BackgroundColor="#2196F3"
+       Shell.ForegroundColor="White"
+       Shell.TitleColor="White"
+       Shell.UnselectedColor="#B3E5FC">
 
-namespace BookSearchApp
-{
-    public partial class MainPage : Shell
-    {
-        public MainPage()
-        {
-            InitializeComponent();
-        }
-    }
-}
+    <TabBar>
+        <ShellContent Title="О программе"
+                      ContentTemplate="{DataTemplate views:AboutPage}"
+                      Route="AboutPage" />
+
+        <ShellContent Title="Добавить книгу"
+                      ContentTemplate="{DataTemplate views:AddItem}"
+                      Route="AddItem" />
+
+        <ShellContent Title="Каталог книг"
+                      ContentTemplate="{DataTemplate views:ItemPage}"
+                      Route="ItemPage" />
+    </TabBar>
+
+</Shell>
