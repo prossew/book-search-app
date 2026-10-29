@@ -1,14 +1,15 @@
 using System;
 using System.IO;
-using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Storage;
 using BookSearchApp.Models;
 
 namespace BookSearchApp;
 
 public partial class App : Application
 {
-    // Единый экземпляр базы данных на всё приложение (избегаем múltiples подключений к одному файлу).
     public MyDatabase Database { get; private set; }
 
     public App()
@@ -17,8 +18,6 @@ public partial class App : Application
         {
             InitializeComponent();
 
-            // Путь к БД строго через FileSystem.AppDataDirectory (MAUI-способ),
-            // а не через Environment.SpecialFolder или относительные пути.
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "books.db3");
             Database = new MyDatabase(dbPath);
 
@@ -26,8 +25,6 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            // Если при инициализации произошла ошибка — не молча умираем в белом экране,
-            // а показываем страницу с текстом ошибки (и пишем в лог).
             System.Diagnostics.Debug.WriteLine($"[App] FATAL INIT ERROR: {ex}");
 
             MainPage = new ContentPage
