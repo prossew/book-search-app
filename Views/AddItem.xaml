@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookSearchApp.Views.AddItem"
+             Title="Добавить книгу">
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="15" VerticalOptions="FillAndExpand">
+
+            <Label Text="Добавление новой книги"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Entry x:Name="TitleEntry"
+                   Placeholder="Название книги"
+                   MaxLength="100" />
+
+            <Entry x:Name="AuthorEntry"
+                   Placeholder="Автор"
+                   MaxLength="100" />
+
+            <Entry x:Name="GenreEntry"
+                   Placeholder="Жанр"
+                   MaxLength="50" />
+
+            <Entry x:Name="YearEntry"
+                   Placeholder="Год издания (например, 2023)"
+                   MaxLength="4"
+                   Keyboard="Numeric" />
+
+            <Entry x:Name="PageCountEntry"
+                   Placeholder="Количество страниц"
+                   Keyboard="Numeric" />
+
+            <Button Text="Добавить книгу"
+                    Clicked="OnAddBookClicked"
+                    HorizontalOptions="FillAndExpand" />
+
+            <Label x:Name="StatusLabel"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="Green" />
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

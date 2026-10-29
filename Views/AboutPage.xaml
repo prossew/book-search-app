@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookSearchApp.Views.AboutPage"
+             Title="О программе">
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="15" VerticalOptions="Center">
+
+            <Frame BackgroundColor="#2196F3"
+                   CornerRadius="15"
+                   Padding="20"
+                   HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="BookSearchApp"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+                    <Label Text="Приложение для поиска и каталогизации книг"
+                           FontSize="16"
+                           TextColor="White"
+                           HorizontalOptions="Center" />
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10"
+                   Padding="15"
+                   BorderColor="#DDDDDD"
+                   HorizontalOptions="FillAndExpand">
+                <StackLayout Spacing="10">
+                    <Label Text="Возможности приложения:"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Label Text="• Добавление новых книг в базу данных SQLite" />
+                    <Label Text="• Поиск книг по названию, автору или жанру" />
+                    <Label Text="• Просмотр полного каталога книг" />
+                    <Label Text="• Удаление выбранных книг из каталога" />
+                    <Label Text="• Обновление списка книг в реальном времени" />
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10"
+                   Padding="15"
+                   BorderColor="#DDDDDD"
+                   HorizontalOptions="FillAndExpand">
+                <StackLayout Spacing="10">
+                    <Label Text="О разработке:"
+                           FontSize="18"
+                           FontAttributes="Bold" />
+                    <Label Text="Приложение разработано на Xamarin.Forms с использованием базы данных SQLite." />
+                    <Label Text="Поддерживает кроссплатформенную разработку для Android и iOS." />
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
