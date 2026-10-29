@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Maui">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net8.0-android</TargetFrameworks>
@@ -6,17 +6,17 @@
     <RootNamespace>BookSearchApp</RootNamespace>
     <AssemblyName>BookSearchApp</AssemblyName>
     <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
-    <AndroidSigningKeyStore Condition="'$(AndroidSigningKeyStore)' == ''"></AndroidSigningKeyStore>
-    <AndroidSigningKeyAlias Condition="'$(AndroidSigningKeyAlias)' == ''"></AndroidSigningKeyAlias>
+    <AndroidKeyStore>false</AndroidKeyStore>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#2196F3" />
-    <MauiSplashScreen Include="Resources\Splash\appicon.svg" BaseSize="128,128" Color="#2196F3" />
-    <AndroidAsset Include="Resources\Raw\**" />
-    <AndroidResource Include="Resources\Values\**" />
+    <MauiIcon Include="Resources/AppIcon/appicon.svg" Color="#2196F3" />
+    <MauiSplashScreen Include="Resources/Splash/appicon.svg" BaseSize="128,128" Color="#2196F3" />
+    <AndroidAsset Include="Resources/Raw/**" Condition="Exists('Resources/Raw')" />
+    <AndroidResource Include="Resources/Values/**" Condition="Exists('Resources/Values')" />
   </ItemGroup>
 
 </Project>
